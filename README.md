@@ -1,1 +1,1 @@
-# Interview-Questions-on-SQL
+# Interview Questions on SQL
