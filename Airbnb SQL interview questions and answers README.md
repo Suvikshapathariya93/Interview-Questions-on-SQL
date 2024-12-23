@@ -1,39 +1,6 @@
 ## Airbnb SQL Interview Questions and Answers
 
-# SQL Interview Questions based on multiple companies.
-
-**1. Select project with highest budget per employee ratio from two tables (projects and employees).**
-```sql
-select p.project_id, p.project_name, p.budget,
-count(e.employee_id) as total_employees,
-(p.budget /count(e.employee_id) as budget_per_employee
-from projects p
-left join employee e
-on p.project_id = e.project_id
-group by 1,2,3
-order by budget_per_employee desc;
-limit 1;
-```
-- `left join`: Joins the projects table with the employees table on the project_id.
-- `count(e.employee_id)`: Counts the number of employees assigned to each project.
-- `p.budget / count(e.employee_id)`: Calculates the budget per employee ratio for each project.
-- `group by`: Groups the results by project ID, project name, and budget to calculate aggregates like the employee count.
-- `order by budget_per_employee DESC`: Sorts the results by the budget per employee ratio in descending order.
-- `limit 1`: Fetches only the project with the highest ratio.
-
-**2. Total number of transaction per user for each day**
-```sql
-select user_id, date(transaction_date) as transaction_day, count(transcation_id) as total_transactions
-from transcations
-group by 1,2
-order by transaction_day, user_id desc;
-```
-- `date(transaction_date)`: Extracts the date from the timestamp to group transactions by day.
-- `count(transaction_id)`: Counts the number of transactions for each user on a particular day.
-- `group by 1,2` : Groups the results by user and day.
-- `order by transaction_day, user_id`: Sorts the output by the date and user for better readability.
-
-**3. Find all Airbnb listings in San Francisco and New York that have at least 10 reviews and an average rating equal to or above 4.5**
+**1. Find all Airbnb listings in San Francisco and New York that have at least 10 reviews and an average rating equal to or above 4.5**
 - tables:
    - listings: `listing_id`, `name`, `city`, `review_count`
    - reviews: `listing_id`, `review_id`, `stars`, `submit_date`
@@ -48,7 +15,7 @@ group by 1,2,3,4
 having average_rating >=4;
 ```
 
-**4. Write a SQL query that will find the average number of guests per booking in each city**
+**2. Write a SQL query that will find the average number of guests per booking in each city**
 - tables:
    - bookings: `booking_id`, `property_id`, `guests`, `booking_date`
    - properties: `property_id`, `city`
@@ -62,7 +29,7 @@ group by 1,2,3
 order by average_guests desc;
 ```
 
-**5. To analyze the click-through conversion rates(CTRs) of their listings. The CTR is calculated by the dividing 
+**3. To analyze the click-through conversion rates(CTRs) of their listings. The CTR is calculated by the dividing 
 the number of booking by the number of listing views, giving a proportion of views that resulted in a booking.**
 - tables:
    - listing_views: `view_id`, `user_id`, `visit_date`, `listing_id`
@@ -80,8 +47,8 @@ group by 1
 order by ctr desc;
 ```
 
-**6. To write a query that outputs the average vacant days across the airbnb in 2021. Some properties have gone out of business so 
-you should only analyze rentals that are currently active. Round the results to a whole number.
+**4. To write a query that outputs the average vacant days across the airbnb in 2021. Some properties have gone out of business so 
+you should only analyze rentals that are currently active. Round the results to a whole number.**
 - assumptions:
    - `is_active` field equals 1 when the property is active and 0 otherwise.
    - in case where the check-in or check-out date is another year other than 2021, limit the calculation to the beginning end of the year 2021 respectively
@@ -119,6 +86,3 @@ FROM vacant_days_per_listing;
 - **Listings with no bookings are treated as fully vacant for 2021.**
 - **Only active listings (`is_active` = 1) are analyzed.**
 - **Bookings that partially overlap with 2021 are adjusted to include only the days within 2021.**
-
-
-
