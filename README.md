@@ -83,6 +83,8 @@ Answer:
 - DROP: Removes the entire table or database structure.
   
 ## Contact Me 🤝
-[📧 Email Me](mailto:suvikshapathariya45@gmail.com)
-[LinkedIn | Suviksha Pathariya](https://www.linkedin.com/in/suviksha-pathariya/)
-[My Projects](https://github.com/Suvikshapathariya93?tab=repositories)
+ [📧 Email](mailto:suvikshapathariya45@gmail.com)
+
+[🎯 LinkedIn | Suviksha Pathariya](https://www.linkedin.com/in/suviksha-pathariya/)
+
+[📚 My Projects](https://github.com/Suvikshapathariya93?tab=repositories)
