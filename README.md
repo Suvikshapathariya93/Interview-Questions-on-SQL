@@ -8,11 +8,9 @@ Hello! I’m a passionate Data Analyst with over 2+ years of experience in analy
 
 **I am proficient in tools like SQL, Python, Tableau, and Excel, and I am always eager to learn and tackle new challenges in the analytics domain.**
 
-## Here are some Theoretical SQL Interview Questions and Answers
-
 ### This section covers SQL questions, ranging from basic to advanced, for interview preparation.
 
-## Basic SQL Questions**
+## Basic SQL Questions
 
 **Q1: What is SQL?**
 
@@ -35,7 +33,7 @@ Answer: A primary key is a column (or a set of columns) that uniquely identifies
 Answer: WHERE filters rows before any aggregation is applied.
 HAVING filters groups after aggregation.
 
-## Intermediate SQL Questions**
+## Intermediate SQL Questions
 
 **Q5: What is a JOIN? List its types.**
 
@@ -57,7 +55,7 @@ Answer: Normalization is the process of organizing data in a database to reduce 
 
 Answer: A CTE is a temporary result set defined within a SQL query using the WITH keyword. It is used for better readability and reusability of query logic.
 
-## Advanced SQL Questions**
+## Advanced SQL Questions
 
 **Q8: What is a Window Function?**
 
@@ -85,6 +83,6 @@ Answer:
 - DROP: Removes the entire table or database structure.
   
 ## Contact Me 🤝
-Email: 
-LinkedIn: Suviksha Pathariya | ()
-Portfolio: [Your Portfolio Link]
+[📧 Email Me](mailto:suvikshapathariya45@gmail.com)
+[LinkedIn | Suviksha Pathariya](https://www.linkedin.com/in/suviksha-pathariya/)
+[My Projects](https://github.com/Suvikshapathariya93?tab=repositories)
