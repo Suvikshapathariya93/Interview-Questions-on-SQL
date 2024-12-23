@@ -1,121 +1,90 @@
-# SQL Interview Questions based on multiple companies.
+## About Me 👋
 
-**1. Select project with highest budget per employee ratio from two tables (projects and employees).**
-```sql
-select p.project_id, p.project_name, p.budget,
-count(e.employee_id) as total_employees,
-(p.budget /count(e.employee_id) as budget_per_employee
-from projects p
-left join employee e
-on p.project_id = e.project_id
-group by 1,2,3
-order by budget_per_employee desc;
-limit 1;
-```
-- `left join`: Joins the projects table with the employees table on the project_id.
-- `count(e.employee_id)`: Counts the number of employees assigned to each project.
-- `p.budget / count(e.employee_id)`: Calculates the budget per employee ratio for each project.
-- `group by`: Groups the results by project ID, project name, and budget to calculate aggregates like the employee count.
-- `order by budget_per_employee DESC`: Sorts the results by the budget per employee ratio in descending order.
-- `limit 1`: Fetches only the project with the highest ratio.
+Hello! I’m a passionate Data Analyst with over 2+ years of experience in analyzing and interpreting data to drive informed business decisions. My expertise lies in:
 
-**2. Total number of transaction per user for each day**
-```sql
-select user_id, date(transaction_date) as transaction_day, count(transcation_id) as total_transactions
-from transcations
-group by 1,2
-order by transaction_day, user_id desc;
-```
-- `date(transaction_date)`: Extracts the date from the timestamp to group transactions by day.
-- `count(transaction_id)`: Counts the number of transactions for each user on a particular day.
-- `group by 1,2` : Groups the results by user and day.
-- `order by transaction_day, user_id`: Sorts the output by the date and user for better readability.
+- Designing and implementing data visualizations 📊
+- Writing efficient SQL queries for data extraction and analysis 🧠
+- Conducting statistical analyses and creating actionable insights 📈
 
-**3. Find all Airbnb listings in San Francisco and New York that have at least 10 reviews and an average rating equal to or above 4.5**
-- tables:
-   - listings: `listing_id`, `name`, `city`, `review_count`
-   - reviews: `listing_id`, `review_id`, `stars`, `submit_date`
-- query: 
-```sql
-select l.listing_id, l.name, l.city, l.reviews_count, avg(r.stars) as average_rating
-from listings l
-join reviews r
-on l.listing_id = r.listing_id
-where l.city in ('San Francisco', 'New York') and l.review_count >=10
-group by 1,2,3,4
-having average_rating >=4;
-```
+**I am proficient in tools like SQL, Python, Tableau, and Excel, and I am always eager to learn and tackle new challenges in the analytics domain.**
 
-**4. Write a SQL query that will find the average number of guests per booking in each city**
-- tables:
-   - bookings: `booking_id`, `property_id`, `guests`, `booking_date`
-   - properties: `property_id`, `city`
-- query:
-```sql
-select b.booking_id, b.property_id, p. city, avg(b.guests) as average_guests
-from bookings b
-join properties p
-on b.property_id = p.property_id
-group by 1,2,3
-order by average_guests desc;
-```
+## Here are some Theoretical SQL Interview Questions and Answers
 
-**5. To analyze the click-through conversion rates(CTRs) of their listings. The CTR is calculated by the dividing 
-the number of booking by the number of listing views, giving a proportion of views that resulted in a booking.**
-- tables:
-   - listing_views: `view_id`, `user_id`, `visit_date`, `listing_id`
-   - bookings: `booking_id`, `user_id`, `booking_date`, `listing_id`
-- query:
-```sql
-select l.listing_id, count(distinct b.booking_id) as total_bookings, count(distinct l.view_id) as total_views,
-case when count(distinct l.view_id) = 0 then 0
-else count(distinct b.booking_id) * 1.0/ count(distinct l.view_id)
-end as ctr
-from listing_views l
-join bookings b
-on l.listing_id = b.lisitng_id
-group by 1
-order by ctr desc;
-```
+### This section covers SQL questions, ranging from basic to advanced, for interview preparation.
 
-**6. To write a query that outputs the average vacant days across the airbnb in 2021. Some properties have gone out of business so 
-you should only analyze rentals that are currently active. Round the results to a whole number.
-- assumptions:
-   - `is_active` field equals 1 when the property is active and 0 otherwise.
-   - in case where the check-in or check-out date is another year other than 2021, limit the calculation to the beginning end of the year 2021 respectively
-   - a listing can be active even if there are no bookings throughout the year.
-- tables:
-   - bookings: `lisiting_id`, `checkin_date`, `checkout_date`
-   - listings: `listing_id`, `is_active`
-- query:
-```sql
-WITH date_range_adjusted_bookings AS (
-    SELECT l.listing_id,
-        GREATEST(DATE('2021-01-01'), b.checkin_date) AS adjusted_checkin,
-        LEAST(DATE('2021-12-31'), b.checkout_date) AS adjusted_checkout
-    FROM bookings b
-    JOIN listings l 
-    ON b.listing_id = l.listing_id
-    WHERE l.is_active = 1 AND (b.checkin_date <= DATE('2021-12-31') AND b.checkout_date >= DATE('2021-01-01'))),
-booked_days_per_listing AS (
-    SELECT listing_id, SUM(DATEDIFF(adjusted_checkout, adjusted_checkin) + 1) AS total_booked_days
-    FROM date_range_adjusted_bookings
-    GROUP BY listing_id),
-vacant_days_per_listing AS (
-    SELECT l.listing_id, 365 - COALESCE(b.total_booked_days, 0) AS vacant_days_in_2021
-    FROM listings l
-    LEFT JOIN booked_days_per_listing b
-    ON l.listing_id = b.listing_id
-    WHERE l.is_active = 1)
-SELECT ROUND(AVG(vacant_days_in_2021)) AS average_vacant_days
-FROM vacant_days_per_listing;
-```
-- `date_range_adjusted_bookings` CTE: Adjusts the checkin_date and checkout_date for bookings to the boundaries of 2021 using GREATEST and LEAST functions.
-- `booked_days_per_listing` CTE: Calculates the total booked days for each active listing in 2021 by summing the number of days between adjusted checkin_date and checkout_date.
-- `vacant_days_per_listing` CTE: Calculates the vacant days for each listing by subtracting the total booked days from 365. Uses COALESCE to handle listings with no bookings (assigns 0 booked days).
-- Final Query: Calculates the average number of vacant days across all active listings in 2021 and rounds the result to the nearest whole number using ROUND.
-- **Listings with no bookings are treated as fully vacant for 2021.**
-- **Only active listings (`is_active` = 1) are analyzed.**
-- **Bookings that partially overlap with 2021 are adjusted to include only the days within 2021.**
+## Basic SQL Questions**
 
+**Q1: What is SQL?**
 
+Answer: SQL (Structured Query Language) is a standard programming language used to interact with relational databases. It is used for querying, updating, and managing data stored in a database.
+
+**Q2: What are the types of SQL commands?**
+
+Answer: SQL commands are categorized into:
+  - DDL (Data Definition Language): CREATE, ALTER, DROP
+  - DML (Data Manipulation Language): SELECT, INSERT, UPDATE, DELETE
+  - DCL (Data Control Language): GRANT, REVOKE
+  - TCL (Transaction Control Language): COMMIT, ROLLBACK, SAVEPOINT
+
+**Q3: What is a Primary Key?**
+
+Answer: A primary key is a column (or a set of columns) that uniquely identifies each row in a table. It must contain unique values and cannot be null.
+
+**Q4: What is the difference between WHERE and HAVING?**
+
+Answer: WHERE filters rows before any aggregation is applied.
+HAVING filters groups after aggregation.
+
+## Intermediate SQL Questions**
+
+**Q5: What is a JOIN? List its types.**
+
+Answer: A JOIN is used to combine rows from two or more tables based on a related column. Types of JOINs:
+  - INNER JOIN: Returns rows with matching values in both tables.
+  - LEFT JOIN: Returns all rows from the left table and matching rows from the right.
+  - RIGHT JOIN: Returns all rows from the right table and matching rows from the left.
+  - FULL OUTER JOIN: Returns rows when there is a match in either table.
+  - CROSS JOIN: Returns the Cartesian product of two tables.
+
+**Q6: Explain the concept of normalization.**
+
+Answer: Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. Common normal forms are:
+  - 1NF: Eliminate duplicate columns and ensure each table has a primary key.
+  - 2NF: Ensure all non-key attributes are fully dependent on the primary key.
+  - 3NF: Remove transitive dependencies.
+    
+**Q7: What is a CTE (Common Table Expression)?**
+
+Answer: A CTE is a temporary result set defined within a SQL query using the WITH keyword. It is used for better readability and reusability of query logic.
+
+## Advanced SQL Questions**
+
+**Q8: What is a Window Function?**
+
+Answer: A window function performs a calculation across a set of rows related to the current row within a result set. It uses the OVER clause. Common examples include ROW_NUMBER(), RANK(), and SUM().
+
+**Q9: What are Indexes in SQL?**
+
+Answer: Indexes are special lookup tables that improve the speed of data retrieval operations on a database table. Types include:
+Clustered Index: Reorders the rows in the table.
+Non-Clustered Index: Maintains a separate structure for the index.
+
+**Q10: How would you optimize a slow SQL query?**
+
+Answer: Techniques to optimize SQL queries include:
+- Using appropriate indexes.
+- Avoiding SELECT * and selecting only required columns.
+- Writing efficient WHERE clauses and avoiding unnecessary calculations in conditions.
+- Using EXPLAIN or query execution plans to identify bottlenecks.
+  
+**Q11: What is the difference between DELETE, TRUNCATE, and DROP?**
+
+Answer:
+- DELETE: Removes specific rows based on conditions. Can be rolled back.
+- TRUNCATE: Removes all rows from a table. Faster than DELETE. Cannot be rolled back.
+- DROP: Removes the entire table or database structure.
+  
+## Contact Me 🤝
+Email: 
+LinkedIn: Suviksha Pathariya | ()
+Portfolio: [Your Portfolio Link]
