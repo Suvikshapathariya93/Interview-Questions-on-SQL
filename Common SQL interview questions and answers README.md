@@ -1,4 +1,4 @@
-# SQL Interview Questions based on multiple companies.
+# Common SQL Interview Questions and Answers
 
 **1. Select project with highest budget per employee ratio from two tables (projects and employees).**
 ```sql
