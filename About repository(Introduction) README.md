@@ -1,14 +1,4 @@
-## About Me 👋
-
-Hello! I’m a passionate Data Analyst with over 2+ years of experience in analyzing and interpreting data to drive informed business decisions. My expertise lies in:
-
-- Designing and implementing data visualizations 📊
-- Writing efficient SQL queries for data extraction and analysis 🧠
-- Conducting statistical analyses and creating actionable insights 📈
-
-**I am proficient in tools like SQL, Python, Tableau, and Excel, and I am always eager to learn and tackle new challenges in the analytics domain.**
-
-### This section covers SQL questions, ranging from basic to advanced, for interview preparation.
+## This section covers SQL theoretical questions, ranging from basic to advanced, for interview preparation.
 
 ## Basic SQL Questions
 
@@ -81,10 +71,3 @@ Answer:
 - DELETE: Removes specific rows based on conditions. Can be rolled back.
 - TRUNCATE: Removes all rows from a table. Faster than DELETE. Cannot be rolled back.
 - DROP: Removes the entire table or database structure.
-  
-## Contact Me 🤝
- [📧 Email](mailto:suvikshapathariya45@gmail.com)
-
-[🎯 LinkedIn | Suviksha Pathariya](https://www.linkedin.com/in/suviksha-pathariya/)
-
-[📚 My Projects](https://github.com/Suvikshapathariya93?tab=repositories)
