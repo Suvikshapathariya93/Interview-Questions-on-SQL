@@ -80,10 +80,10 @@ SELECT ROUND(AVG(vacant_days_in_2021)) AS average_vacant_days
 FROM vacant_days_per_listing;
 ```
 - Explanation:
-- `date_range_adjusted_bookings` CTE: Adjusts the checkin_date and checkout_date for bookings to the boundaries of 2021 using GREATEST and LEAST functions.
-- `booked_days_per_listing` CTE: Calculates the total booked days for each active listing in 2021 by summing the number of days between adjusted checkin_date and checkout_date.
-- `vacant_days_per_listing` CTE: Calculates the vacant days for each listing by subtracting the total booked days from 365. Uses COALESCE to handle listings with no bookings (assigns 0 booked days).
-- Final Query: Calculates the average number of vacant days across all active listings in 2021 and rounds the result to the nearest whole number using ROUND.
-- **Listings with no bookings are treated as fully vacant for 2021.**
-- **Only active listings (`is_active` = 1) are analyzed.**
-- **Bookings that partially overlap with 2021 are adjusted to include only the days within 2021.**
+  - `date_range_adjusted_bookings` CTE: Adjusts the checkin_date and checkout_date for bookings to the boundaries of 2021 using GREATEST and LEAST functions.
+  - `booked_days_per_listing` CTE: Calculates the total booked days for each active listing in 2021 by summing the number of days between adjusted checkin_date and checkout_date.
+  - `vacant_days_per_listing` CTE: Calculates the vacant days for each listing by subtracting the total booked days from 365. Uses COALESCE to handle listings with no bookings (assigns 0 booked days).
+  - Final Query: Calculates the average number of vacant days across all active listings in 2021 and rounds the result to the nearest whole number using ROUND.
+  - **Listings with no bookings are treated as fully vacant for 2021.**
+  - **Only active listings (`is_active` = 1) are analyzed.**
+  - **Bookings that partially overlap with 2021 are adjusted to include only the days within 2021.**
