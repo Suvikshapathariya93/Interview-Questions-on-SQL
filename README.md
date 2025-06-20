@@ -1,4 +1,4 @@
-## About Me 👋
+## About Me 👋 
 
 Hello! I’m a passionate Data Analyst with over 3+ years of experience in analyzing and interpreting data to drive informed business decisions. My expertise lies in:
 
