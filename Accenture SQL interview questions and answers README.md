@@ -13,4 +13,3 @@
   - Partition Large Tables: Partitioning can help reduce the number of rows scanned.
   - Review Server Configuration: Optimize `MySQL` settings like `join_buffer_size`, `sort_buffer_size`, and `query_cache_size`.
 
-**2. 
