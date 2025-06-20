@@ -9,3 +9,8 @@
 **7. How would you balance normalization for data integrity and denormalization for query performance?**
 **8. If two systems simultaneously update the same booking record, what mechanisms would you use in SQL to prevent data conflicts and ensure consistency.**
 **9. Explain the scenerios where window functions outperform traditional group-by clause in SQL.**
+
+
+## Accenture SQL Interview Questions and Answers
+
+**1. How would you optimize a slow-running query with multiple joins?**
