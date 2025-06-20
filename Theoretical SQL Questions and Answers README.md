@@ -1,4 +1,4 @@
-## This section covers SQL theoretical questions, ranging from basic to advanced, for interview preparation.
+## Gearing up for an SQL interview? This section is packed with theory questions that range from simple to challenging to help you get ready with confidence.
 
 ## Basic SQL Questions
 
