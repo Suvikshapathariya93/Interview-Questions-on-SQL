@@ -1,14 +1,30 @@
 ## About Me 👋 
 
-Hello! I’m a passionate Data Analyst with over 3+ years of experience in analyzing and interpreting data to drive informed business decisions. My expertise lies in:
+**👋 Hello there! I'm Suviksha, a passionate Data Analyst with 3+ years of experience turning raw data into real business impact.**
+I specialize in:
 
-- Designing and implementing data visualizations 📊
-- Writing efficient SQL queries for data extraction and analysis 🧠
-- Conducting statistical analyses and creating actionable insights 📈
+🎯 Crafting compelling data visualizations to uncover hidden insights
 
-**I am proficient in tools like SQL, Python, Tableau, and Excel, and I am always eager to learn and tackle new challenges in the analytics domain.**
+🛠 Writing optimized SQL queries for fast, efficient data analysis
 
------ **so this repository is related to interview question of SQL which i found out from various sources. I am updating regularly so please feel free to learn and earn.** -----
+📊 Performing statistical analysis to drive strategic decisions
+
+## 🔧 Tools I work with:
+SQL | Python | Tableau | Excel
+
+## 📘 About This Repository: SQL_Interview_Questions
+Welcome to this curated collection of SQL interview questions gathered from real-world interviews and trusted sources!
+I regularly update this repository with:
+
+✅ Scenario-based SQL problems
+✅ Tips & tricks for analytical thinking
+✅ Best practices for writing clean, efficient queries
+
+💡 Whether you're prepping for your next data role or brushing up your SQL skills — feel free to fork, learn, contribute, and grow!
+
+📬 Have a question or suggestion? Let’s connect!
+🧠 Learning is better when shared — so star ⭐ this repo if you find it helpful!
+
 
 ## Contact Me 🤝
  [📧 Email](mailto:suvikshapathariya45@gmail.com)
